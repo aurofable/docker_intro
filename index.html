@@ -342,11 +342,59 @@ $ $KAFKA_HOME/bin/kafka-console-producer.sh --topic=topic \
                                 Similar to the <a href="http://aphyr.com/tags/jepsen">Jepsen</a> series.<br/>
                                 For docker, there is <a href="https://github.com/dcm-oss/blockade">blockade</a>.
                             </p>
-
                     </section>
 
                     <section>
                         <h1>Local blockchain systems</h1>
+                    </section>
+
+                     <section>
+                        <h2>Example: Bitcoin Test Network</h2>
+
+                        <h4>Get code for presentation, on gh-pages branch, and enter bitcoin dir</h4>
+                        <pre><code class="bash" data-trim>$ cd bitcoin</code></pre>
+
+                        <h4>Build images</h4>
+                        <pre><code class="bash" data-trim>$ make build</code></pre>
+                    </section>
+
+                    <section>
+
+                        <h4>Start up two bitcoin nodes/containers, in separate terminals</h4>
+                        <pre><code class="bash" data-trim>$ make alice_shell</code></pre>
+                        <pre><code class="bash" data-trim>$ make bob_shell</code></pre>
+
+                        <h4>Startup bitcoin daemon in both</h4>
+                        <pre><code class="bash" data-trim>$ startup</code></pre>
+
+                        <h4>Get information</h4>
+                        <pre><code class="bash" data-trim>$ getinfo</code></pre>
+
+                        <h4>Get network peers - there should be none</h4>
+                        <pre><code class="bash" data-trim>$ getpeerinfo</code></pre>
+
+                        <h4>Try connecting on network - peerinfo should be populated now</h4>
+                        <pre><code class="bash" data-trim>$ tryconnect</code></pre>
+
+                    </section>
+
+                    <section>
+
+                        <h4>Check balance</h4>
+                        <pre><code class="bash" data-trim>$ getbalance</code></pre>
+
+                        <h4>Mine some blocks, in either terminal</h4>
+                        <pre><code class="bash" data-trim>$ mine 101</code></pre>
+
+                        <h4>Balance should have changed, generate new address to receive payment</h4>
+                        <pre><code class="bash" data-trim>$ getnewaddress</code></pre>
+
+                        <h4>Send bitcoins to new address</h4>
+                        <pre><code class="bash" data-trim>$ sendtoaddress $address $amt</code></pre>
+
+                        <h4>Mine some blocks for verification, check balances after</h4>
+                        <pre><code class="bash" data-trim>$ mine 4</code></pre>
+
                     </section>
 
                 </section>
