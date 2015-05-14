@@ -214,7 +214,50 @@
                     <p>
                     <img src="static/docker_basics_of_docker_system.png">
                     </p>
+
+                    <aside class="notes">
+                        Walk through Dockerfile used for serving this presentation. <br/>
+                        1. vim Dockerfile, walk through scripts<br/>
+                        2. docker build -t "james/docker-reveal-test.js:latest" .<br/>
+                        3. docker push james/docker-reveal-test.js<br/>
+                        4. docker run -d -p 8888:8000 -v $(pwd):/slides/ "james/docker-reveal-test.js:latest"<br/>
+                    </aside>
                 </section>
+
+                <section>
+                    <h2>Basic workflow</h2>
+                    <p>
+
+                    <h4>Create a Dockerfile</h4>
+                    <pre><code data-trim>
+FROM debian:8.0
+# Install systems 
+RUN apt-get update; apt-get install procps -yy
+...
+                    </code></pre>
+
+                    <h4>Build an image</h4>
+                    <pre><code class="bash" data-trim>$ docker build -t "james/docker-reveal-test.js:latest" .</code></pre>
+
+                    <h4>Pushing the image</h4>
+                    <pre><code class="bash" data-trim>$ docker push james/docker-reveal-test.js</code></pre>
+
+                    <h4>Running the container</h4>
+                    <pre><code class="bash" data-trim>$ docker run -d -p 8888:8000 -v $(pwd):/slides/ "james/docker-reveal-test.js:latest"</code></pre>
+
+                    <h4>View presentation</h4>
+                    View at http://$(boot2docker ip):8888
+                    </p>
+
+                    <aside class="notes">
+                        Walk through Dockerfile used for serving this presentation. <br/>
+                        1. vim Dockerfile, walk through scripts<br/>
+                        2. docker build -t "james/docker-reveal-test.js:latest" .<br/>
+                        3. docker push james/docker-reveal-test.js<br/>
+                        4. docker run -d -p 8888:8000 -v $(pwd):/slides/ "james/docker-reveal-test.js:latest"<br/>
+                    </aside>
+                </section>
+
 
                 <section>
                     <h2>Changes and Updates</h2>
