@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Lunch & Learn: An Introduction to Docker</title>
+        <title>Lunch &amp; Learn: An Introduction to Docker</title>
 
         <meta name="description" content="Simple talk about docker">
         <meta name="author" content="James Chun">
@@ -292,6 +292,57 @@ RUN apt-get update; apt-get install procps -yy
                     <section>
                         <h1>Local Distributed System / Cluster</h1>
                         Running + Testing
+                    </section>
+
+                    <section>
+                        <h2>Example: Kafka Cluster</h2>
+                        <a href="https://github.com/wurstmeister/kafka-docker">kafka-docker</a><br/>
+                        <a href="https://docs.docker.com/compose/">docker-compose</a><br/>
+                    </section>
+
+                    <section>
+                        <p>
+
+                        <h4>Start the cluster</h4>
+                        <pre><code class="bash" data-trim>$ docker-compose up</code></pre>
+
+                        <h4>Scale cluster</h4>
+                        <pre><code class="bash" data-trim>$ docker-compose scale kafka=5</code></pre>
+
+                        </p>
+                    </section>
+
+
+                    <section>
+                        <p>
+
+                        <h4>Get a shell</h4>
+                        <pre><code class="bash" data-trim>$ start-kafka-shell.sh <DOCKER_HOST_IP> <ZK_HOST:ZK_PORT></code></pre>
+
+                        <h4>Create topic and start producer</h4>
+                        <pre><code class="bash" data-trim>
+                            $ $KAFKA_HOME/bin/kafka-topics.sh --create --topic topic \
+--partitions 4 --zookeeper $ZK --replication-factor 2
+$ $KAFKA_HOME/bin/kafka-topics.sh --describe --topic topic --zookeeper $ZK 
+$ $KAFKA_HOME/bin/kafka-console-producer.sh --topic=topic \
+--broker-list=`broker-list.sh`
+
+                        </code></pre>
+
+                        <h4>Start another shell, and consume</h4>
+                        <pre><code class="bash" data-trim>$ $KAFKA_HOME/bin/kafka-console-consumer.sh --topic=topic --zookeeper=$ZK</code></pre>
+                        
+                    
+                        </p>
+                    </section>
+
+                    <section>
+                            <h2>Idea: Simulate network failures</h2>
+                            <p>
+                                Similar to the <a href="http://aphyr.com/tags/jepsen">Jepsen</a> series.<br/>
+                                For docker, there is <a href="https://github.com/dcm-oss/blockade">blockade</a>.
+                            </p>
+
                     </section>
 
                     <section>
