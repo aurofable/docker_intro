@@ -1,0 +1,1 @@
+Inspired by https://geraldkaszuba.com/creating-your-own-experimental-bitcoin-network/, https://github.com/gak/docker-bitcoin-regtest
